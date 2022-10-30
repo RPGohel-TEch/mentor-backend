@@ -3,7 +3,9 @@
     "version": "1.0.0",
     "description": "attendance managment backend Nodejs/Express.js",
     "main": "index.js",
-    "engines": { "node": "16.x" },
+    "engines": {
+        "node": "16.x"
+    },
     "scripts": {
         "start": "node index.js",
         "dev": "nodemon index.js",
@@ -18,7 +20,7 @@
         "bcrypt": "^5.0.1",
         "body-parser": "^1.20.0",
         "cors": "^2.8.5",
-        "dotenv": "^16.0.2",
+        "dotenv": "^16.0.3",
         "express": "^4.18.1",
         "express-validator": "^6.14.1",
         "jsonwebtoken": "^8.5.1",
