@@ -4,8 +4,9 @@ dotenv.config();
 
 mongoose
   .connect(process.env.MONGO_URI, {
+    useUnifiedTopology:true,
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useCreateIndex: true
   })
   .then(() => {
     console.log("connection successful");
