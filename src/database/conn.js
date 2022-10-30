@@ -3,10 +3,9 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 mongoose
-  .connect(`mongodb+srv://rahulgohel:Rahulgohel123@cluster0.9m5lhzt.mongodb.net/database`, {
+  .connect('mongodb+srv://rahulgohel:Rahulgohel123@cluster0.9m5lhzt.mongodb.net/database?retryWrites=true&w=majority', {
     useUnifiedTopology:true,
-    useNewUrlParser: true,
-   
+    useNewUrlParser: true
   })
   .then(() => {
     console.log("connection successful");
