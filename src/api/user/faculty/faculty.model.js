@@ -11,6 +11,13 @@ const facultySchema = mongoose.Schema({
   last_name: {
     type: String,
   },
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+  },
   address: {
     type: String,
   },
@@ -20,12 +27,16 @@ const facultySchema = mongoose.Schema({
   mobile: {
     type: String,
   },
-  semester: [{
-    type: Number,
-  }],
-  subjects: [{
-    type: String,
-  }],
+  semester: [
+    {
+      type: Number,
+    },
+  ],
+  subjects: [
+    {
+      type: String,
+    },
+  ],
   ssc: {
     type: String,
   },
@@ -34,6 +45,10 @@ const facultySchema = mongoose.Schema({
   },
   graduation: {
     type: String,
+  },
+  role: {
+    type: String,
+    default: "faculty",
   },
   createdAt: {
     type: Date,

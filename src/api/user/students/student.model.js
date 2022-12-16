@@ -27,6 +27,10 @@ const studentSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Media",
   },
+  role: {
+    type: String,
+    default: "student"
+  },
   createdAt: {
     type: Date,
     default: Date.now,
