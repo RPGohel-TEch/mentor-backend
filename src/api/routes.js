@@ -4,7 +4,6 @@ const studentRoute = require("./user/students/student.routes");
 const facultyRoute = require("./user/faculty/faculty.routes");
 const adminRoute = require("./admin/admin.routes");
 const courseRoute = require("./user/courses/course.routes");
-const attendanceRoute = require("./attendance/attendance.routes");
 const subjectRoute = require("./user/subject/subject.routes");
 
 router.use("/student", studentRoute);
