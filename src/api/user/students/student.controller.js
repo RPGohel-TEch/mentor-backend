@@ -4,12 +4,12 @@ const studentService = require("./student.service");
  * @param {req} req - Requests
  * @param {res} res - Response
  * @param {next} next - next
- * Get Users
+ * Get Student
  */
-module.exports.getUsers = async (req, res, next) => {
+module.exports.getStudent = async (req, res, next) => {
   try {
     const filters = req.query;
-    const result = await studentService.getUsers(filters);
+    const result = await studentService.getStudent(filters);
     return res.status(result.code).json(result);
   } catch (error) {
     next(error);
@@ -20,12 +20,12 @@ module.exports.getUsers = async (req, res, next) => {
  * @param {req} req - Requests
  * @param {res} res - Response
  * @param {next} next - next
- * Get Every Users
+ * Get Every Student
  */
-module.exports.getEveryUsers = async (req, res, next) => {
+module.exports.getEveryStudent = async (req, res, next) => {
   try {
     const filters = req.query;
-    const result = await studentService.getEveryUsers(filters);
+    const result = await studentService.getEveryStudent(filters);
     return res.status(result.code).json(result);
   } catch (error) {
     next(error);
@@ -37,10 +37,10 @@ module.exports.getEveryUsers = async (req, res, next) => {
  * @param {res} res - Response
  * @param {next} next - next
  */
- module.exports.getUserFromId = async (req, res, next) => {
+ module.exports.getStudentFromId = async (req, res, next) => {
   try {
     const userId = req.params.id;
-    const result = await studentService.getUserFromId(userId);
+    const result = await studentService.getStudentFromId(userId);
     res.json(result);
   } catch (error) {
     next(error);
@@ -52,10 +52,10 @@ module.exports.getEveryUsers = async (req, res, next) => {
  * @param {res} res - Response
  * @param {next} next - next
  */
-module.exports.addUser = async (req, res, next) => {
+module.exports.addStudent = async (req, res, next) => {
   try {
     const body = req.body;
-    const result = await studentService.addUser(body);
+    const result = await studentService.addStudent(body);
     res.json(result);
   } catch (error) {
     next(error);
@@ -67,10 +67,10 @@ module.exports.addUser = async (req, res, next) => {
  * @param {res} res - Response
  * @param {next} next - next
  */
-module.exports.editUser = async (req, res, next) => {
+module.exports.editStudent = async (req, res, next) => {
   try {
     const userId = req.params.id;
-    const result = await studentService.editUser(userId, req.body);
+    const result = await studentService.editStudent(userId, req.body);
     res.json(result);
   } catch (error) {
     next(error);
@@ -81,12 +81,12 @@ module.exports.editUser = async (req, res, next) => {
  * @param {req} req - Requests
  * @param {res} res - Response
  * @param {next} next - next
- * Delete User
+ * Delete Student
  */
-module.exports.removeUser = async (req, res, next) => {
+module.exports.removeStudent = async (req, res, next) => {
   try {
     const userId = req.params.id;
-    const result = await studentService.removeUser(userId, req.query);
+    const result = await studentService.removeStudent(userId, req.query);
     res.json(result);
   } catch (error) {
     next(error);

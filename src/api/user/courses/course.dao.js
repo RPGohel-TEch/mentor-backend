@@ -1,6 +1,6 @@
-const Users = require("./course.model");
+const Course = require("./course.model");
 
-const buildSaveUserJson = (props) => {
+const buildSaveCourseJson = (props) => {
   const json = {};
   json.course_name = props.course_name;
   json.semester = props.semester;
@@ -8,24 +8,24 @@ const buildSaveUserJson = (props) => {
   return json;
 };
 
-module.exports.getUsers = async (filters, params) => {
+module.exports.getCourse = async (filters, params) => {
   try {
     const { page = 1, limit = 25, sort } = params;
-    const users = await Users.find(filters)
+    const users = await Course.find(filters)
       .sort(sort)
       .skip((Number(page) - 1) * Number(limit))
       .limit(Number(limit))
       .lean({ virtuals: true });
-    const total = await Users.count({ ...filters });
+    const total = await Course.count({ ...filters });
     return {users, total};
   } catch (error) {
     throw error;
   }
 };
 
-module.exports.getEveryUsers = async (filters) => {
+module.exports.getEveryCourse = async (filters) => {
   try {
-    const users = await Users.find(filters)
+    const users = await Course.find(filters)
       .sort({user_name: 1})
     return users;
   } catch (error) {
@@ -33,9 +33,9 @@ module.exports.getEveryUsers = async (filters) => {
   }
 };
 
-module.exports.getUserById = async (id) => {
+module.exports.getCourseById = async (id) => {
   try {
-    const users = Users.findOne({ _id: id })
+    const users = Course.findOne({ _id: id })
       .lean();
     return users;
   } catch (error) {
@@ -43,9 +43,9 @@ module.exports.getUserById = async (id) => {
   }
 };
 
-module.exports.addUser = (userDetail) => {
+module.exports.addCourse = (userDetail) => {
   try {
-    const user = new Users(buildSaveUserJson(userDetail));
+    const user = new Course(buildSaveCourseJson(userDetail));
     const result = user.save();
     return result;
   } catch (error) {
@@ -53,9 +53,9 @@ module.exports.addUser = (userDetail) => {
   }
 };
 
-module.exports.editUser = async (userId, params) => {
+module.exports.editCourse = async (userId, params) => {
   try {
-    const user = await Users.findOneAndUpdate({ _id: userId }, params, {
+    const user = await Course.findOneAndUpdate({ _id: userId }, params, {
       new: true,
     });
     return user;
@@ -64,9 +64,9 @@ module.exports.editUser = async (userId, params) => {
   }
 };
 
-module.exports.deleteUser = async (userId) => {
+module.exports.deleteCourse = async (userId) => {
   try {
-    const user = await Users.findOneAndDelete({ _id: userId });
+    const user = await Course.findOneAndDelete({ _id: userId });
     return user;
   } catch (error) {
     throw error;

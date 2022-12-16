@@ -1,6 +1,6 @@
-const Users = require("./faculty.model");
+const Faculty = require("./faculty.model");
 
-const buildSaveUserJson = (props) => {
+const buildSaveFacultyJson = (props) => {
   const json = {};
   json.first_name = props.first_name;
   json.middle_name = props.middle_name;
@@ -15,24 +15,33 @@ const buildSaveUserJson = (props) => {
   return json;
 };
 
-module.exports.getUsers = async (filters, params) => {
+module.exports.checkFacultyExist = async (email) => {
+  try {
+    const faculty = await Faculty.findOne({ email });
+    return faculty;
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports.getFaculty = async (filters, params) => {
   try {
     const { page = 1, limit = 25, sort } = params;
-    const users = await Users.find(filters)
+    const users = await Faculty.find(filters)
       .sort(sort)
       .skip((Number(page) - 1) * Number(limit))
       .limit(Number(limit))
       .lean({ virtuals: true });
-    const total = await Users.count({ ...filters });
+    const total = await Faculty.count({ ...filters });
     return {users, total};
   } catch (error) {
     throw error;
   }
 };
 
-module.exports.getEveryUsers = async (filters) => {
+module.exports.getEveryFaculty = async (filters) => {
   try {
-    const users = await Users.find(filters)
+    const users = await Faculty.find(filters)
       .sort({user_name: 1})
       .lean({ virtuals: true });
     return users;
@@ -41,9 +50,9 @@ module.exports.getEveryUsers = async (filters) => {
   }
 };
 
-module.exports.getUserById = async (id) => {
+module.exports.getFacultyById = async (id) => {
   try {
-    const users = Users.findOne({ _id: id })
+    const users = Faculty.findOne({ _id: id })
       .populate("pic")
       .lean();
     return users;
@@ -52,9 +61,9 @@ module.exports.getUserById = async (id) => {
   }
 };
 
-module.exports.addUser = (userDetail) => {
+module.exports.addFaculty = (userDetail) => {
   try {
-    const user = new Users(buildSaveUserJson(userDetail));
+    const user = new Faculty(buildSaveFacultyJson(userDetail));
     const result = user.save();
     return result;
   } catch (error) {
@@ -62,9 +71,9 @@ module.exports.addUser = (userDetail) => {
   }
 };
 
-module.exports.editUser = async (userId, params) => {
+module.exports.editFaculty = async (userId, params) => {
   try {
-    const user = await Users.findOneAndUpdate({ _id: userId }, params, {
+    const user = await Faculty.findOneAndUpdate({ _id: userId }, params, {
       new: true,
     });
     return user;
@@ -73,9 +82,9 @@ module.exports.editUser = async (userId, params) => {
   }
 };
 
-module.exports.deleteUser = async (userId) => {
+module.exports.deleteFaculty = async (userId) => {
   try {
-    const user = await Users.findOneAndDelete({ _id: userId });
+    const user = await Faculty.findOneAndDelete({ _id: userId });
     return user;
   } catch (error) {
     throw error;

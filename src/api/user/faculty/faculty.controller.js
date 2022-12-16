@@ -1,15 +1,15 @@
-const userService = require("./faculty.service");
+const facultyService = require("./faculty.service");
 
 /**
  * @param {req} req - Requests
  * @param {res} res - Response
  * @param {next} next - next
- * Get Users
+ * Get Faculty
  */
-module.exports.getUsers = async (req, res, next) => {
+module.exports.getFaculty = async (req, res, next) => {
   try {
     const filters = req.query;
-    const result = await userService.getUsers(filters);
+    const result = await facultyService.getFaculty(filters);
     return res.status(result.code).json(result);
   } catch (error) {
     next(error);
@@ -20,12 +20,12 @@ module.exports.getUsers = async (req, res, next) => {
  * @param {req} req - Requests
  * @param {res} res - Response
  * @param {next} next - next
- * Get Every Users
+ * Get Every Faculty
  */
-module.exports.getEveryUsers = async (req, res, next) => {
+module.exports.getEveryFaculty = async (req, res, next) => {
   try {
     const filters = req.query;
-    const result = await userService.getEveryUsers(filters);
+    const result = await facultyService.getEveryFaculty(filters);
     return res.status(result.code).json(result);
   } catch (error) {
     next(error);
@@ -37,10 +37,10 @@ module.exports.getEveryUsers = async (req, res, next) => {
  * @param {res} res - Response
  * @param {next} next - next
  */
- module.exports.getUserFromId = async (req, res, next) => {
+ module.exports.getFacultyFromId = async (req, res, next) => {
   try {
     const userId = req.params.id;
-    const result = await userService.getUserFromId(userId);
+    const result = await facultyService.getFacultyFromId(userId);
     res.json(result);
   } catch (error) {
     next(error);
@@ -52,10 +52,10 @@ module.exports.getEveryUsers = async (req, res, next) => {
  * @param {res} res - Response
  * @param {next} next - next
  */
-module.exports.addUser = async (req, res, next) => {
+module.exports.addFaculty = async (req, res, next) => {
   try {
     const body = req.body;
-    const result = await userService.addUser(body);
+    const result = await facultyService.addFaculty(body);
     res.json(result);
   } catch (error) {
     next(error);
@@ -67,10 +67,10 @@ module.exports.addUser = async (req, res, next) => {
  * @param {res} res - Response
  * @param {next} next - next
  */
-module.exports.editUser = async (req, res, next) => {
+module.exports.editFaculty = async (req, res, next) => {
   try {
     const userId = req.params.id;
-    const result = await userService.editUser(userId, req.body);
+    const result = await facultyService.editFaculty(userId, req.body);
     res.json(result);
   } catch (error) {
     next(error);
@@ -81,12 +81,12 @@ module.exports.editUser = async (req, res, next) => {
  * @param {req} req - Requests
  * @param {res} res - Response
  * @param {next} next - next
- * Delete User
+ * Delete Faculty
  */
-module.exports.removeUser = async (req, res, next) => {
+module.exports.removeFaculty = async (req, res, next) => {
   try {
     const userId = req.params.id;
-    const result = await userService.removeUser(userId, req.query);
+    const result = await facultyService.removeFaculty(userId, req.query);
     res.json(result);
   } catch (error) {
     next(error);

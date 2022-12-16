@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const adminController = require("./admin.controller");
-const { verifyAccessToken } = require("../../middleware/verifyAccessToken");
 
 /* Admin Login */
 router.post("/login", adminController.loginAdminHandler);

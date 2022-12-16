@@ -2,11 +2,11 @@ const userDao = require("./faculty.dao");
 const { Format } = require("./../../../config/formate");
 
 /**
- * Get Users
+ * Get Faculty
  *
- * @param {props} props - User session
+ * @param {props} props - Faculty session
  */
-module.exports.getUsers = async (props) => {
+module.exports.getFaculty = async (props) => {
   try {
     const commonFilter = {};
     if (props.search && props.search !== "") {
@@ -25,7 +25,7 @@ module.exports.getUsers = async (props) => {
       ...commonFilter,
     };
 
-    let usersData = await userDao.getUsers(priorityFilter, props);
+    let usersData = await userDao.getFaculty(priorityFilter, props);
     return Format.success(usersData, "Success");
   } catch (error) {
     throw error;
@@ -33,11 +33,11 @@ module.exports.getUsers = async (props) => {
 };
 
 /**
- * Get Every Users
+ * Get Every Faculty
  *
- * @param {props} props - User session
+ * @param {props} props - Faculty session
  */
-module.exports.getEveryUsers = async (props) => {
+module.exports.getEveryFaculty = async (props) => {
   try {
     const commonFilter = {};
     if (props.search && props.search !== "") {
@@ -56,7 +56,7 @@ module.exports.getEveryUsers = async (props) => {
       ...commonFilter,
     };
 
-    let usersData = await userDao.getEveryUsers(priorityFilter);
+    let usersData = await userDao.getEveryFaculty(priorityFilter);
     return Format.success(usersData, "Success");
   } catch (error) {
     throw error;
@@ -67,9 +67,9 @@ module.exports.getEveryUsers = async (props) => {
  *
  * @param {userId} userId - userId of restaurant
  */
-module.exports.getUserFromId = async (userId) => {
+module.exports.getFacultyFromId = async (userId) => {
   try {
-    const user = await userDao.getUserById(userId);
+    const user = await userDao.getFacultyById(userId);
     const result = user;
     return Format.success(result, "Success");
   } catch (error) {
@@ -78,13 +78,13 @@ module.exports.getUserFromId = async (userId) => {
 };
 
 /**
- * Add User
+ * Add Faculty
  *
  * @param {props} params - user details
  */
-module.exports.addUser = async (params) => {
+module.exports.addFaculty = async (params) => {
   try {
-    const result = await userDao.addUser(params);
+    const result = await userDao.addFaculty(params);
     return Format.success(result, "Success");
   } catch (error) {
     throw error;
@@ -92,14 +92,14 @@ module.exports.addUser = async (params) => {
 };
 
 /**
- * Edit User
+ * Edit Faculty
  *
  * @param {userId} userId - req.param
  * @param {params} params - req.body
  */
-module.exports.editUser = async (userId, params) => {
+module.exports.editFaculty = async (userId, params) => {
   try {
-    const result = await userDao.editUser(userId, params);
+    const result = await userDao.editFaculty(userId, params);
     return Format.success(result, "success");
   } catch (error) {
     throw error;
@@ -109,14 +109,14 @@ module.exports.editUser = async (userId, params) => {
 /**
  * @param {userId} userId - userId
  * @param {params} params - params
- * delete User
+ * delete Faculty
  */
-module.exports.removeUser = async (userId, params) => {
+module.exports.removeFaculty = async (userId, params) => {
   try {
-    const result = await userDao.deleteUser(userId);
+    const result = await userDao.deleteFaculty(userId);
     return Format.success(result, "success");
   } catch (error) {
-    logger.error(`[ UserService removeUser()] ${error}`);
+    logger.error(`[ FacultyService removeFaculty()] ${error}`);
     throw error;
   }
 };

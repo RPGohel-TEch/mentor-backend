@@ -1,23 +1,22 @@
 const router = require("express").Router();
 const studentController = require("./student.controller");
-const { verifyAccessToken } = require("../../../middleware/verifyAccessToken");
 
-/* Get User details */
-router.get("/", studentController.getUsers);
+/* Get Student details */
+router.get("/", studentController.getStudent);
 
-/* Get Every User details */
-router.get("/all", studentController.getEveryUsers);
+/* Get Every Student details */
+router.get("/all", studentController.getEveryStudent);
 
-/* Get User By Id */
-router.get("/:id", studentController.getUserFromId);
+/* Get Student By Id */
+router.get("/:id", studentController.getStudentFromId);
 
-/* Add User */
-router.post("/add-student", studentController.addUser);
+/* Add Student */
+router.post("/add-student", studentController.addStudent);
 
-/* Edit User */
-router.put("/edit-student/:id", studentController.editUser);
+/* Edit Student */
+router.put("/edit-student/:id", studentController.editStudent);
 
-/* Delete User By Id */
-router.delete("/:id", studentController.removeUser);
+/* Delete Student By Id */
+router.delete("/:id", studentController.removeStudent);
 
 module.exports = router;

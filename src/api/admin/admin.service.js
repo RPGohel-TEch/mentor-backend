@@ -1,26 +1,36 @@
 const adminDao = require("./admin.dao");
+const facultyDao = require("../user/faculty/faculty.dao");
+const studentDao = require("../user/students/student.dao");
 const { Format } = require("../../config/formate");
 const APIError = require("../../utils/APIError");
 const bcrypt = require("bcrypt");
-const { getToken } = require("./generate-token");
 
 module.exports.loginAdmin = async (props) => {
   try {
     /* Check admin is  registered or not */
     const admin = await adminDao.checkAdminExist(props.email);
+    const faculty = await facultyDao.checkFacultyExist(props.email);
+    const student = await studentDao.checkStudentExist(props.email);
     if (admin && admin !== null) {
       const dbPassword = admin.password;
       const password = props.password;
-
-      const passwordDecrypt = await bcrypt.compareSync(password, dbPassword);
-      if (passwordDecrypt) {
-        const token = await getToken({
-          first_name: admin.first_name,
-          last_name: admin.last_name,
-          email: admin.email,
-        });
-
-        return Format.success({ admin, token }, "success");
+      // const passwordDecrypt = await bcrypt.compareSync(password, dbPassword);
+      if (dbPassword === password) {
+        return Format.success({ admin }, "success");
+      } else {
+        throw new APIError({ message: "Incorrect Password.", status: 500 });
+      }
+    } else if (faculty && faculty !== null) {
+      const dbPassword = faculty.password;
+      const password = props.password;
+      if (dbPassword === password) {
+        return Format.success({ faculty }, "success");
+      }
+    } else if (student && student !== null) {
+      const dbPassword = student.password;
+      const password = props.password;
+      if (dbPassword === password) {
+        return Format.success({ student }, "success");
       } else {
         throw new APIError({ message: "Incorrect Password.", status: 500 });
       }
@@ -74,8 +84,8 @@ module.exports.addAdmin = async (params) => {
         status: 500,
       });
     }
-    const passwordHash = await bcrypt.hashSync(params.password, 10);
-    params.password = passwordHash;
+    // const passwordHash = await bcrypt.hashSync(params.password, 10);
+    // params.password = passwordHash;
     const result = await adminDao.addAdmin(params);
     return Format.success(result, "Success");
   } catch (error) {

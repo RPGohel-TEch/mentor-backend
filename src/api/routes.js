@@ -13,8 +13,6 @@ router.use("/faculty", facultyRoute);
 
 router.use("/admin", adminRoute);
 
-router.use("/attendance", attendanceRoute);
-
 router.use("/course", courseRoute);
 
 router.use("/subject", subjectRoute);
