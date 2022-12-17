@@ -14,6 +14,6 @@ router.post("/add-subject", studentController.addSubject);
 router.put("/edit-subject/:id", studentController.editSubject);
 
 /* Delete Subject By Id */
-router.delete("/delete-subject/:id", studentController.removeSubject);
+router.delete("/:id", studentController.removeSubject);
 
 module.exports = router;

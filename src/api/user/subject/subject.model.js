@@ -13,6 +13,9 @@ const subjectSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  batch: {
+    type: String
+  },
   createdAt: {
     type: Date,
     default: Date.now,

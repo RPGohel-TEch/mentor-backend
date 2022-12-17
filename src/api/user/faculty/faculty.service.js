@@ -14,7 +14,7 @@ module.exports.getFaculty = async (props) => {
         {
           $or: [
             {
-              user_name: { $regex: ".*" + props.search + ".*", $options: "i" },
+              name: { $regex: ".*" + props.search + ".*", $options: "i" },
             },
           ],
         },
@@ -45,7 +45,7 @@ module.exports.getEveryFaculty = async (props) => {
         {
           $or: [
             {
-              user_name: { $regex: ".*" + props.search + ".*", $options: "i" },
+              name: { $regex: ".*" + props.search + ".*", $options: "i" },
             },
           ],
         },
@@ -116,7 +116,6 @@ module.exports.removeFaculty = async (userId, params) => {
     const result = await userDao.deleteFaculty(userId);
     return Format.success(result, "success");
   } catch (error) {
-    logger.error(`[ FacultyService removeFaculty()] ${error}`);
     throw error;
   }
 };
