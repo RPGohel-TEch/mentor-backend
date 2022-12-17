@@ -1,7 +1,7 @@
 {
-    "name": "attendance-managment-backend",
+    "name": "mentor-monitor-backend",
     "version": "1.0.0",
-    "description": "attendance managment backend Nodejs/Express.js",
+    "description": "mentor monitor backend Nodejs/Express.js",
     "main": "index.js",
     "engines": {
         "node": "16.x"
@@ -14,7 +14,7 @@
         "lint:watch": "npm run lint --watch",
         "validate": "npm run lint"
     },
-    "author": "sahil sutariya",
+    "author": "Rahul Gohel",
     "license": "ISC",
     "dependencies": {
         "bcrypt": "^5.0.1",

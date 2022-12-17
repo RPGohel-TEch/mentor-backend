@@ -2,16 +2,14 @@ const Faculty = require("./faculty.model");
 
 const buildSaveFacultyJson = (props) => {
   const json = {};
-  json.first_name = props.first_name;
-  json.middle_name = props.middle_name;
-  json.last_name = props.last_name;
-  json.semester = props.semester;
-  json.address = props.address;
+  json.name = props.name || null;
+  json.semester = props.semester || null;
+  json.address = props.address || null;
   json.birthdate = props.birthdate || null;
-  json.mobile = props.mobile;
-  json.semester = props.semester;
-  json.subjects = props.subjects;
-  json.pic = props.pic;
+  json.mobile = props.mobile || null;
+  json.semester = props.semester || null;
+  json.subjects = props.subjects || null;
+  json.pic = props.pic || null;
   return json;
 };
 

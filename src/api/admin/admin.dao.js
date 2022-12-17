@@ -3,8 +3,8 @@ const Admin = require("./admin.model");
 const buildSaveadminJson = (props) => {
   const json = {};
   json.first_name = props.first_name;
-  json.last_name = props.last_name;
-  json.mobile = props.mobile;
+  json.last_name = props.last_name || null;
+  json.mobile = props.mobile || null;
   json.email = props.email;
   json.password = props.password;
   return json;
