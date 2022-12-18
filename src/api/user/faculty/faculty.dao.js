@@ -6,9 +6,12 @@ const buildSaveFacultyJson = (props) => {
   json.semester = props.semester || null;
   json.address = props.address || null;
   json.birthdate = props.birthdate || null;
+  json.enrollment_no = props.enrollment_no || null;
   json.mobile = props.mobile || null;
   json.semester = props.semester || null;
   json.subjects = props.subjects || null;
+  json.password = props.password || null;
+  json.email = props.email || null;
   json.pic = props.pic || null;
   return json;
 };

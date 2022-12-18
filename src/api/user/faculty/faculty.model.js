@@ -16,6 +16,9 @@ const facultySchema = mongoose.Schema({
   birthdate: {
     type: String,
   },
+  enrollment_no: {
+    type: String
+  },
   mobile: {
     type: String,
   },

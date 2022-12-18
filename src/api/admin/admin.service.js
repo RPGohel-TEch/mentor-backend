@@ -18,13 +18,15 @@ module.exports.loginAdmin = async (props) => {
       if (dbPassword === password) {
         return Format.success({ admin }, "success");
       } else {
-        throw new APIError({ message: "Incorrect Password.", status: 500 });
+        throw new APIError({ message: "Admin Incorrect Password.", status: 500 });
       }
     } else if (faculty && faculty !== null) {
       const dbPassword = faculty.password;
       const password = props.password;
       if (dbPassword === password) {
         return Format.success({ faculty }, "success");
+      }else {
+        throw new APIError({ message: "Faculty Incorrect Password.", status: 500 });
       }
     } else if (student && student !== null) {
       const dbPassword = student.password;

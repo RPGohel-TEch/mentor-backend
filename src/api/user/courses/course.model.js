@@ -9,9 +9,8 @@ const courseSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  first_batch: {
+  batch: {
     type: String,
-    required: true,
   },
   createdAt: {
     type: Date,

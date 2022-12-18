@@ -16,6 +16,10 @@ const subjectSchema = mongoose.Schema({
   batch: {
     type: String
   },
+  faculty: {
+    type: String,
+    ref: "Faculty"
+  },
   createdAt: {
     type: Date,
     default: Date.now,

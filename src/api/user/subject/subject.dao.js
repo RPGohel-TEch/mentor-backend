@@ -5,6 +5,7 @@ const buildSaveSubjectJson = (props) => {
   json.subject_name = props.subject_name;
   json.semester = props.semester;
   json.batch = props.batch || null;
+  json.faculty = props.faculty || null;
   json.branch = props.branch;
   return json;
 };

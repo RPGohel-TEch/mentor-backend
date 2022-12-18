@@ -4,7 +4,7 @@ const buildSaveCourseJson = (props) => {
   const json = {};
   json.course_name = props.course_name;
   json.semester = props.semester;
-  json.first_batch = props.first_batch;
+  json.batch = props.batch || null;
   return json;
 };
 
