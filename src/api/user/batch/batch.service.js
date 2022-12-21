@@ -1,12 +1,12 @@
-const courseDao = require("./course.dao");
+const batchDao = require("./batch.dao");
 const { Format } = require("../../../config/formate");
 
 /**
- * Get Course
+ * Get Batch
  *
- * @param {props} props - Course session
+ * @param {props} props - Batch session
  */
-module.exports.getCourse = async (props) => {
+module.exports.getBatch = async (props) => {
   try {
     const commonFilter = {};
     if (props.search && props.search !== "") {
@@ -25,7 +25,7 @@ module.exports.getCourse = async (props) => {
       ...commonFilter,
     };
 
-    let usersData = await courseDao.getCourse(priorityFilter, props);
+    let usersData = await batchDao.getBatch(priorityFilter, props);
     return Format.success(usersData, "Success");
   } catch (error) {
     throw error;
@@ -33,11 +33,11 @@ module.exports.getCourse = async (props) => {
 };
 
 /**
- * Get Every Course
+ * Get Every Batch
  *
- * @param {props} props - Course session
+ * @param {props} props - Batch session
  */
-module.exports.getEveryCourse = async (props) => {
+module.exports.getEveryBatch = async (props) => {
   try {
     const commonFilter = {};
     if (props.search && props.search !== "") {
@@ -56,7 +56,7 @@ module.exports.getEveryCourse = async (props) => {
       ...commonFilter,
     };
 
-    let usersData = await courseDao.getEveryCourse(priorityFilter);
+    let usersData = await batchDao.getEveryBatch(priorityFilter);
     return Format.success(usersData, "Success");
   } catch (error) {
     throw error;
@@ -67,9 +67,9 @@ module.exports.getEveryCourse = async (props) => {
  *
  * @param {userId} userId - userId of restaurant
  */
-module.exports.getCourseFromId = async (userId) => {
+module.exports.getBatchFromId = async (userId) => {
   try {
-    const user = await courseDao.getCourseById(userId);
+    const user = await batchDao.getBatchById(userId);
     const result = user;
     return Format.success(result, "Success");
   } catch (error) {
@@ -78,13 +78,13 @@ module.exports.getCourseFromId = async (userId) => {
 };
 
 /**
- * Add Course
+ * Add Batch
  *
  * @param {props} params - user details
  */
-module.exports.addCourse = async (params) => {
+module.exports.addBatch = async (params) => {
   try {
-    const result = await courseDao.addCourse(params);
+    const result = await batchDao.addBatch(params);
     return Format.success(result, "Success");
   } catch (error) {
     throw error;
@@ -92,26 +92,14 @@ module.exports.addCourse = async (params) => {
 };
 
 /**
- * Edit Course
+ * Edit Batch
  *
  * @param {userId} userId - req.param
  * @param {params} params - req.body
  */
-module.exports.editCourse = async (userId, params) => {
+module.exports.editBatch = async (userId, params) => {
   try {
-    let course_data = params;
-    if (params.sem_batch && params.course_sem) {
-      const data = {
-        batch: [
-          {
-            sem: params.course_sem,
-            batch: params.sem_batch,
-          },
-        ],
-      };
-      return (course_data = data);
-    }
-    const result = await courseDao.editCourse(userId, course_data);
+    const result = await batchDao.editBatch(userId, params);
     return Format.success(result, "success");
   } catch (error) {
     throw error;
@@ -121,14 +109,14 @@ module.exports.editCourse = async (userId, params) => {
 /**
  * @param {userId} userId - userId
  * @param {params} params - params
- * delete Course
+ * delete Batch
  */
-module.exports.removeCourse = async (userId, params) => {
+module.exports.removeBatch = async (userId, params) => {
   try {
-    const result = await courseDao.deleteCourse(userId);
+    const result = await batchDao.deleteBatch(userId);
     return Format.success(result, "success");
   } catch (error) {
-    logger.error(`[ CourseService removeCourse()] ${error}`);
+    logger.error(`[ BatchService removeBatch()] ${error}`);
     throw error;
   }
 };

@@ -9,9 +9,12 @@ const courseSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  batch: {
-    type: String,
-  },
+  batch: [
+    {
+      sem: { type: String },
+      batch: { type: String },
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now,
