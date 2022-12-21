@@ -2,8 +2,7 @@ const Admin = require("./admin.model");
 
 const buildSaveadminJson = (props) => {
   const json = {};
-  json.first_name = props.first_name;
-  json.last_name = props.last_name || null;
+  json.name = props.name;
   json.mobile = props.mobile || null;
   json.email = props.email;
   json.password = props.password;
@@ -21,9 +20,7 @@ module.exports.checkAdminExist = async (email) => {
 
 module.exports.getAdmin = async () => {
   try {
-    const admin = Admin.find()
-      .select("first_name last_name mobile email password")
-      .lean();
+    const admin = Admin.find().lean();
     return admin;
   } catch (error) {
     throw error;
@@ -32,9 +29,7 @@ module.exports.getAdmin = async () => {
 
 module.exports.getAdminById = async (id) => {
   try {
-    const admin = Admin.findOne({ _id: id })
-      .select("first_name last_name mobile email password")
-      .lean();
+    const admin = Admin.findOne({ _id: id }).lean();
     return admin;
   } catch (error) {
     throw error;
