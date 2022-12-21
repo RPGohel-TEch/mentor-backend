@@ -3,6 +3,7 @@ const Student = require("./student.model");
 const buildSaveStudentJson = (props) => {
   const json = {};
   json.name = props.name;
+  json.password = props.password;
   json.semester = props.semester || null;
   json.address = props.address || null;
   json.birthdate = props.birthdate || null;

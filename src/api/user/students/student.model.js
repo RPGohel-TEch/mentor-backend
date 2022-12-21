@@ -8,6 +8,9 @@ const studentSchema = mongoose.Schema({
   address: {
     type: String,
   },
+  password: {
+    type: String,
+  },
   birthdate: {
     type: String,
   },
