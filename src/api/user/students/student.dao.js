@@ -2,14 +2,17 @@ const Student = require("./student.model");
 
 const buildSaveStudentJson = (props) => {
   const json = {};
-  json.first_name = props.first_name;
-  json.middle_name = props.middle_name;
-  json.last_name = props.last_name;
-  json.semester = props.semester;
-  json.address = props.address;
+  json.name = props.name;
+  json.semester = props.semester || null;
+  json.address = props.address || null;
   json.birthdate = props.birthdate || null;
-  json.mobile = props.mobile;
-  json.standard = props.standard;
+  json.mobile = props.mobile || null;
+  json.branch = props.branch || null;
+  json.batch = props.batch || null;
+  json.email = props.email || null;
+  json.enrollment_no = props.enrollment_no || null;
+  json.ssc_result = props.ssc_result || null;
+  json.hsc_result = props.hsc_result || null;
   json.pic = props.pic;
   return json;
 };
@@ -41,7 +44,7 @@ module.exports.getStudent = async (filters, params) => {
 module.exports.getEveryStudent = async (filters) => {
   try {
     const student = await Student.find(filters)
-      .sort({user_name: 1})
+      .sort({name: 1})
       .lean({ virtuals: true });
     return student;
   } catch (error) {

@@ -14,7 +14,7 @@ module.exports.getStudent = async (props) => {
         {
           $or: [
             {
-              user_name: { $regex: ".*" + props.search + ".*", $options: "i" },
+              name: { $regex: ".*" + props.search + ".*", $options: "i" },
             },
           ],
         },

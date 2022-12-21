@@ -1,15 +1,9 @@
 const mongoose = require("mongoose");
 
 const studentSchema = mongoose.Schema({
-  first_name: {
+  name: {
     type: String,
     required: true,
-  },
-  middle_name: {
-    type: String,
-  },
-  last_name: {
-    type: String,
   },
   address: {
     type: String,
@@ -17,11 +11,29 @@ const studentSchema = mongoose.Schema({
   birthdate: {
     type: String,
   },
+  email: {
+    type: String,
+  },
   mobile: {
     type: String,
   },
   semester: {
     type: Number,
+  },
+  enrollment_no: {
+    type: String
+  },
+  ssc_result: {
+    type: Number
+  },
+  hsc_result: {
+    type: Number
+  },
+  branch: {
+    type: String
+  },
+  batch: {
+    type: String
   },
   pic: {
     type: mongoose.Schema.Types.ObjectId,
